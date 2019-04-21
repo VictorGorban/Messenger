@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TcpNetwork.Helpers
+namespace TCPNetwork.Helpers
 {
     public static class ConsoleHelpers
     {

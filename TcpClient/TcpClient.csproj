@@ -77,9 +77,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TcpNetwork\TcpNetwork.csproj">
+    <ProjectReference Include="..\TcpNetwork\TCPNetwork.csproj">
       <Project>{f06b8115-4b9e-4ee3-a732-1305ffa44d40}</Project>
-      <Name>TcpNetwork</Name>
+      <Name>TCPNetwork</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

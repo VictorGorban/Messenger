@@ -5,8 +5,8 @@ using System.Text;
 
 namespace TCPNetwork.Enums
 {
-    public enum StatusCode: int
+    public enum ServerResponseType: int
     {
-        OK, Error
+        PlainText, StringsArray
     }
 }

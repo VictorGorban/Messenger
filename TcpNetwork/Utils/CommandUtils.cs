@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TcpNetwork.Utils
+namespace TCPNetwork.Utils
 {
     public static class CommandUtils
     {

@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using TcpNetwork.Utils;
+using TCPNetwork.Utils;
 
-namespace TcpNetwork.Commands
+namespace TCPNetwork.Commands
 {
     public class EnterRoomCommand : BaseCommand
     {
-        public SignInCommand signin { get; set; } // whoami
+        public SignInCommand creditials { get; set; } // whoami
 
         public string RoomName { get; set; }
         public int RoomNameLength => RoomName.Length;
@@ -15,18 +15,18 @@ namespace TcpNetwork.Commands
 
         public byte[] ToBytes()
         {
-            byte[] signinBytes = signin.ToBytes();
+            byte[] creditialsBytes = creditials.ToBytes();
 
             byte[] roomNameBytes = CommandUtils.GetBytes(RoomName);
             byte[] passwordBytes = CommandUtils.GetBytes(Password);
 
-            int messageLength = signinBytes.Length + sizeof(int) * 2 + roomNameBytes.Length + passwordBytes.Length;
+            int messageLength = creditialsBytes.Length + sizeof(int) * 2 + roomNameBytes.Length + passwordBytes.Length;
 
             var messageData = new byte[messageLength];
             using (var stream = new MemoryStream(messageData))
             {
                 var writer = new BinaryWriter(stream);
-                writer.Write(signinBytes);
+                writer.Write(creditialsBytes);
                 writer.Write(RoomNameLength);
                 writer.Write(roomNameBytes);
 
@@ -44,8 +44,8 @@ namespace TcpNetwork.Commands
                 var br = new BinaryReader(ms);
                 var command = new EnterRoomCommand();
 
-                var signin = SignInCommand.FromStream(ms);
-                command.signin = signin;
+                var creditials = SignInCommand.FromStream(ms);
+                command.creditials = creditials;
 
                 var roomNameLength = br.ReadInt32();
                 command.RoomName = CommandUtils.GetString(br.ReadBytes(roomNameLength));
@@ -55,6 +55,23 @@ namespace TcpNetwork.Commands
 
                 return command;
             }
+        }
+
+        public static EnterRoomCommand FromStream(Stream stream)
+        {
+            var br = new BinaryReader(stream);
+            var command = new EnterRoomCommand();
+
+            var creditials = SignInCommand.FromStream(stream);
+            command.creditials = creditials;
+
+            var roomNameLength = br.ReadInt32();
+            command.RoomName = CommandUtils.GetString(br.ReadBytes(roomNameLength));
+
+            var passwordLength = br.ReadInt32();
+            command.Password = CommandUtils.GetString(br.ReadBytes(passwordLength));
+
+            return command;
         }
     }
 }

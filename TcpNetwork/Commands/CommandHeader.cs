@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using TcpNetwork.Enums;
+using TCPNetwork.Enums;
 
-namespace TcpNetwork.Commands
+namespace TCPNetwork.Commands
 {
     public class CommandHeader
     {

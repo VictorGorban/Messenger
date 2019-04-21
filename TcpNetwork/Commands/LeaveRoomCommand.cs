@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using TcpNetwork.Utils;
+using TCPNetwork.Utils;
 
-namespace TcpNetwork.Commands
+namespace TCPNetwork.Commands
 {
-    public struct LeaveRoomCommand : BaseCommand
+    public class LeaveRoomCommand : BaseCommand
     {
-        public SignInCommand signin { get; set; } // whoami
+        public SignInCommand creditials { get; set; } // whoami
 
         public string roomName { get; set; }
         public int roomNameLength => roomName.Length;
@@ -34,8 +34,8 @@ namespace TcpNetwork.Commands
                 var br = new BinaryReader(ms);
                 var command = new LeaveRoomCommand();
 
-                var signin = SignInCommand.FromStream(ms);
-                command.signin = signin;
+                var creditials = SignInCommand.FromStream(ms);
+                command.creditials = creditials;
 
                 var roomNameLength = br.ReadInt32();
                 command.roomName = CommandUtils.GetString(br.ReadBytes(roomNameLength));
@@ -43,5 +43,21 @@ namespace TcpNetwork.Commands
                 return command;
             }
         }
+
+        public static LeaveRoomCommand FromStream(Stream stream)
+        {
+            var br = new BinaryReader(stream);
+            var command = new LeaveRoomCommand();
+
+            var creditials = SignInCommand.FromStream(stream);
+            command.creditials = creditials;
+
+            var roomNameLength = br.ReadInt32();
+            command.roomName = CommandUtils.GetString(br.ReadBytes(roomNameLength));
+
+            return command;
+        }
+
+
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TcpNetwork
+﻿namespace TCPNetwork
 {
     public class Settings
     {

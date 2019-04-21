@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using TcpNetwork.Utils;
+using TCPNetwork.Utils;
 
-namespace TcpNetwork.Commands
+namespace TCPNetwork.Commands
 {
     public class SignInCommand : BaseCommand
     {

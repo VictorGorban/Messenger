@@ -1,32 +1,33 @@
 ﻿using System.IO;
-using TcpNetwork.Enums;
-using TcpNetwork.Utils;
+using TCPNetwork.Enums;
+using TCPNetwork.Utils;
 
-namespace TcpNetwork.Commands
+namespace TCPNetwork.Commands
 {
     public class ServerResponseCommand : BaseCommand
     {
         public StatusCode statusCode;
-        public CommandType commandType;
+        public ServerResponseType responseType;
 
-        public string Message { get; set; }
-        public int MessageLength => Message.Length;
-
+        /// <summary>
+        /// Обычная строка или массив строк
+        /// </summary>
+        public string Message { get; set; } // обычная строка или массив строк в base64(сериализация, короче)
+        public int MessageLength => Message!=null ? Message.Length : 0;
+    
         public byte[] ToBytes()
         {
-            byte[] messageBytes = CommandUtils.GetBytes(Message);
-
-            int messageLength = sizeof(StatusCode)+ sizeof(CommandType) + sizeof(int) + MessageLength;
+            int messageLength = sizeof(StatusCode)+ sizeof(ServerResponseType) + sizeof(int) + MessageLength;
 
             var messageData = new byte[messageLength];
             using (var stream = new MemoryStream(messageData))
             {
                 var writer = new BinaryWriter(stream);
                 writer.Write((int)statusCode);
-                writer.Write((int)commandType);
+                writer.Write((int)responseType);
 
                 writer.Write(MessageLength);
-                writer.Write(messageBytes);
+                writer.Write(CommandUtils.GetBytes(Message));
 
                 return messageData;
             }
@@ -40,7 +41,7 @@ namespace TcpNetwork.Commands
                 var command = new ServerResponseCommand();
 
                 command.statusCode = (StatusCode)br.ReadInt32();
-                command.commandType = (CommandType)br.ReadInt32();
+                command.responseType = (ServerResponseType)br.ReadInt32();
 
                 var messageLength = br.ReadInt32();
                 command.Message = CommandUtils.GetString(br.ReadBytes(messageLength));
@@ -49,22 +50,36 @@ namespace TcpNetwork.Commands
             }
         }
 
-        public static ServerResponseCommand Error(CommandType commandType, string message = "An error occured")
+        public static ServerResponseCommand FromStream(Stream stream)
+        {
+                var br = new BinaryReader(stream);
+                var command = new ServerResponseCommand();
+
+                command.statusCode = (StatusCode)br.ReadInt32();
+                command.responseType = (ServerResponseType)br.ReadInt32();
+
+                var messageLength = br.ReadInt32();
+                command.Message = CommandUtils.GetString(br.ReadBytes(messageLength));
+
+                return command;
+        }
+
+        public static ServerResponseCommand Error(ServerResponseType responseType, string message = "An error occured")
         {
             return new ServerResponseCommand
             {
                 statusCode = StatusCode.Error,
-                commandType = commandType,
+                responseType = responseType,
                 Message = message
             };
         }
 
-        public static ServerResponseCommand OK(CommandType commandType, string message = "It's all OK!")
+        public static ServerResponseCommand OK(ServerResponseType responseType, string message = "It's all OK!")
         {
             return new ServerResponseCommand
             {
                 statusCode = StatusCode.OK,
-                commandType = commandType,
+                responseType = responseType,
                 Message = message
             };
         }

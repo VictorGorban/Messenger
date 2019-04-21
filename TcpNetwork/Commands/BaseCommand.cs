@@ -1,4 +1,4 @@
-﻿namespace TcpNetwork.Commands
+﻿namespace TCPNetwork.Commands
 {
     public interface BaseCommand
     {

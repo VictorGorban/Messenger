@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using TcpNetwork.Utils;
+using TCPNetwork.Utils;
 
-namespace TcpNetwork.Commands
+namespace TCPNetwork.Commands
 {
-    public class SendMessageCommand : BaseCommand
+    public class SendChatMessageCommand : BaseCommand
     {
-        public SignInCommand signin { get; set; } // whoami
+        public SignInCommand creditials { get; set; } // whoami
 
         public string Message
         {
@@ -15,12 +15,12 @@ namespace TcpNetwork.Commands
 
         public int length => Message.Length; 
 
-        public SendMessageCommand(string message)
+        public SendChatMessageCommand(string message)
         {
             Message = message;
         }
 
-        public SendMessageCommand()
+        public SendChatMessageCommand()
         {
         }
 
@@ -41,15 +41,15 @@ namespace TcpNetwork.Commands
             }
         }
 
-        public static SendMessageCommand FromBytes(byte[] bytes)
+        public static SendChatMessageCommand FromBytes(byte[] bytes)
         {
             using (var ms = new MemoryStream(bytes))
             {
                 var br = new BinaryReader(ms);
-                var command = new SendMessageCommand();
+                var command = new SendChatMessageCommand();
 
-                var signin = SignInCommand.FromStream(ms);
-                command.signin = signin;
+                var creditials = SignInCommand.FromStream(ms);
+                command.creditials = creditials;
 
                 var length = br.ReadInt32();
 
@@ -57,6 +57,21 @@ namespace TcpNetwork.Commands
 
                 return command;
             }
+        }
+
+        public static SendChatMessageCommand FromStream(Stream stream)
+        {
+            var br = new BinaryReader(stream);
+            var command = new SendChatMessageCommand();
+
+            var creditials = SignInCommand.FromStream(stream);
+            command.creditials = creditials;
+
+            var length = br.ReadInt32();
+
+            command.Message = CommandUtils.GetString(br.ReadBytes(length));
+
+            return command;
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Threading;
 
-namespace TcpNetwork.Network
+namespace TCPNetwork.Network
 {
     public class CommandListener
     {
@@ -29,15 +29,15 @@ namespace TcpNetwork.Network
             {
                 TcpClient client = _tcpListener.AcceptTcpClient();
 
-                var clientThread = new Thread(HandleClientComm);
+                var clientThread = new Thread(HandleClientCommunication);
                 clientThread.Start(client);
             }
             _tcpListener.Stop();
         }
 
-        private void HandleClientComm(object client)
+        private void HandleClientCommunication(object client)
         {
-            MessageHandler.HandleClientMessage(client);
+            MessageHandler.Server.HandleClientMessage(client);
         }
 
         public void Stop()

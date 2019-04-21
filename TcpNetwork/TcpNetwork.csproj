@@ -37,17 +37,14 @@
   <ItemGroup>
     <Compile Include="Commands\CommandHeader.cs" />
     <Compile Include="Commands\LeaveRoomCommand.cs" />
-    <Compile Include="Commands\SaveUserCommand.cs" />
     <Compile Include="Commands\SendMessageCommand.cs" />
     <Compile Include="Commands\EnterRoomCommand.cs" />
     <Compile Include="Commands\ServerResponseCommand.cs" />
     <Compile Include="Commands\SignInCommand.cs" />
     <Compile Include="Commands\SignUpCommand.cs" />
-    <Compile Include="Commands\SingleCommand.cs" />
-    <Compile Include="Commands\FileCommand.cs" />
-    <Compile Include="Commands\StringCommand.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Enums\CommandType.cs" />
+    <Compile Include="Enums\ServerResponseType.cs" />
     <Compile Include="Enums\StatusCode.cs" />
     <Compile Include="Helpers\ConsoleHelpers.cs" />
     <Compile Include="Network\MessageHandler.cs" />

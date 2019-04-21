@@ -1,18 +1,15 @@
-﻿namespace TcpNetwork.Enums
+﻿namespace TCPNetwork.Enums
 {
     public enum CommandType : int
     {
-        MessageAccepted,
-
-        SendMessage,
-        Signin,
         Signup,
+        Signin,
+
         EnterRoom,
         LeaveRoom,
 
-        Single,
-        File,
-        SaveUser,
+        SendChatMessage, // отправить сообщение в чате
 
+        ServerResponse,
     }
 }
