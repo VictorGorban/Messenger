@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TcpClient
+namespace TcpClientApp
 {
     public static class Settings
     {
@@ -11,5 +11,9 @@ namespace TcpClient
 
         public static string UserName;
         public static string UserPassword;
+
+
+
+        public const int ServerPort = 45823;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TcpClient
+﻿namespace TcpClientApp
 {
     partial class MainForm
     {
@@ -36,6 +36,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.sendStringCommandButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ClearNotificationsBoxButton = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.NotificationsBox = new System.Windows.Forms.TextBox();
@@ -54,16 +55,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.UsernameBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.ClearNotificationsBoxButton = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ClearNotificationsBoxButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ClearNotificationsBoxButton)).BeginInit();
             this.SuspendLayout();
             // 
             // ServerAddressBox
@@ -127,7 +127,6 @@
             this.sendStringCommandButton.TabIndex = 5;
             this.sendStringCommandButton.Text = "Send";
             this.sendStringCommandButton.UseVisualStyleBackColor = true;
-            this.sendStringCommandButton.Click += new System.EventHandler(this.sendStringCommandButton_Click);
             // 
             // panel1
             // 
@@ -141,6 +140,18 @@
             this.panel1.Size = new System.Drawing.Size(328, 51);
             this.panel1.TabIndex = 12;
             this.panel1.Visible = false;
+            // 
+            // ClearNotificationsBoxButton
+            // 
+            this.ClearNotificationsBoxButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ClearNotificationsBoxButton.Image = ((System.Drawing.Image)(resources.GetObject("ClearNotificationsBoxButton.Image")));
+            this.ClearNotificationsBoxButton.Location = new System.Drawing.Point(297, 8);
+            this.ClearNotificationsBoxButton.Name = "ClearNotificationsBoxButton";
+            this.ClearNotificationsBoxButton.Size = new System.Drawing.Size(27, 32);
+            this.ClearNotificationsBoxButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ClearNotificationsBoxButton.TabIndex = 17;
+            this.ClearNotificationsBoxButton.TabStop = false;
+            this.ClearNotificationsBoxButton.Click += new System.EventHandler(this.ClearNotificationsBoxButton_Click);
             // 
             // label2
             // 
@@ -271,6 +282,7 @@
             this.CheckSettingsButton.TabIndex = 11;
             this.CheckSettingsButton.Text = "Check";
             this.CheckSettingsButton.UseVisualStyleBackColor = true;
+            this.CheckSettingsButton.Click += new System.EventHandler(this.CheckSettingsButton_Click);
             // 
             // panel3
             // 
@@ -338,18 +350,6 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "Username";
             // 
-            // ClearNotificationsBoxButton
-            // 
-            this.ClearNotificationsBoxButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClearNotificationsBoxButton.Image = ((System.Drawing.Image)(resources.GetObject("ClearNotificationsBoxButton.Image")));
-            this.ClearNotificationsBoxButton.Location = new System.Drawing.Point(297, 8);
-            this.ClearNotificationsBoxButton.Name = "ClearNotificationsBoxButton";
-            this.ClearNotificationsBoxButton.Size = new System.Drawing.Size(27, 32);
-            this.ClearNotificationsBoxButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ClearNotificationsBoxButton.TabIndex = 17;
-            this.ClearNotificationsBoxButton.TabStop = false;
-            this.ClearNotificationsBoxButton.Click += new System.EventHandler(this.ClearNotificationsBoxButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,6 +364,7 @@
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ClearNotificationsBoxButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -373,7 +374,6 @@
             this.tabPage2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ClearNotificationsBoxButton)).EndInit();
             this.ResumeLayout(false);
 
         }

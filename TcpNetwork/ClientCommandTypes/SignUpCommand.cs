@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using TCPNetwork.Utils;
 
-namespace TCPNetwork.Commands
+namespace TCPNetwork.ClientCommandTypes
 {
     public class SignUpCommand : SignInCommand
     {

@@ -1,25 +1,25 @@
 ﻿using System.IO;
 using TCPNetwork.Enums;
 
-namespace TCPNetwork.Commands
+namespace TCPNetwork.ClientCommandTypes
 {
-    public class CommandHeader
+    public class ClientCommandHeader
     {
-        public CommandType Type { get; set; }
+        public ClientCommandType Type { get; set; }
 
         public static int GetLength()
         {
             return sizeof(int);
         }
 
-        public static  CommandHeader FromBytes(byte[] bytes)
+        public static  ClientCommandHeader FromBytes(byte[] bytes)
         {
             using (var ms = new MemoryStream(bytes))
             {
                 var br = new BinaryReader(ms);
-                var header = new CommandHeader();
+                var header = new ClientCommandHeader();
 
-                header.Type = (CommandType) br.ReadInt32();
+                header.Type = (ClientCommandType) br.ReadInt32();
 
                 return header;
             }

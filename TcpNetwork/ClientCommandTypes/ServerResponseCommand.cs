@@ -2,7 +2,7 @@
 using TCPNetwork.Enums;
 using TCPNetwork.Utils;
 
-namespace TCPNetwork.Commands
+namespace TCPNetwork.ClientCommandTypes
 {
     public class ServerResponseCommand : BaseCommand
     {

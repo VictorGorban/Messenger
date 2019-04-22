@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using TCPNetwork.Utils;
 
-namespace TCPNetwork.Commands
+namespace TCPNetwork.ClientCommandTypes
 {
-    public class SendChatMessageCommand : BaseCommand
+    /*public class SendChatMessageCommand : BaseCommand
     {
         public SignInCommand creditials { get; set; } // whoami
 
@@ -73,5 +73,5 @@ namespace TCPNetwork.Commands
 
             return command;
         }
-    }
+    }*/
 }

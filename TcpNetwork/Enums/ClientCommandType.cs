@@ -1,6 +1,6 @@
 ﻿namespace TCPNetwork.Enums
 {
-    public enum CommandType : int
+    public enum ClientCommandType : int
     {
         Signup,
         Signin,
@@ -9,7 +9,5 @@
         LeaveRoom,
 
         SendChatMessage, // отправить сообщение в чате
-
-        ServerResponse,
     }
 }

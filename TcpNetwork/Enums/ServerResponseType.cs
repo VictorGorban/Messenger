@@ -5,8 +5,10 @@ using System.Text;
 
 namespace TCPNetwork.Enums
 {
-    public enum ServerResponseType: int
+    public enum ServerResponseType : int
     {
-        PlainText, StringsArray
+        PlainText,
+        ContactsList, // maybe rooms
+        FullUpdate
     }
 }

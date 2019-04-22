@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿
+using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -9,10 +10,12 @@ namespace TCPNetwork.Network
         private readonly TcpListener _tcpListener;
         private Thread _listenThread;
         private bool _continueListen = true;
+        private ParameterizedThreadStart _WhatToDo = null;
 
-        public CommandListener()
+        public CommandListener(ParameterizedThreadStart whatToDo)
         {
             _tcpListener = new TcpListener(IPAddress.Any, Settings.Port);
+            _WhatToDo = whatToDo;
         }
 
         public void Start()
@@ -29,15 +32,10 @@ namespace TCPNetwork.Network
             {
                 TcpClient client = _tcpListener.AcceptTcpClient();
 
-                var clientThread = new Thread(HandleClientCommunication);
+                var clientThread = new Thread(_WhatToDo);
                 clientThread.Start(client);
             }
             _tcpListener.Stop();
-        }
-
-        private void HandleClientCommunication(object client)
-        {
-            MessageHandler.Server.HandleClientMessage(client);
         }
 
         public void Stop()
@@ -49,3 +47,4 @@ namespace TCPNetwork.Network
 
     }
 }
+

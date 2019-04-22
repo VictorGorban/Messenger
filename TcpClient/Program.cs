@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace TcpClient
+namespace TcpClientApp
 {
     static class Program
     {
